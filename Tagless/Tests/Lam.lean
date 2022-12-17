@@ -1,7 +1,4 @@
-
-
-
-structure Dsl where
+structure Lam where
   Repr : Type v → Type v
   Obsv : Type v → Type v
 
@@ -19,8 +16,8 @@ structure Dsl where
 
 
 
-def Dsl.example
-  (dsl : Dsl)
+def Lam.example
+  (dsl : Lam)
 : dsl.Repr Nat :=
   let v1 := dsl.val 7
   let v2 := dsl.val 3
@@ -31,7 +28,7 @@ def Dsl.example
 
 
 
-def Dsl.eval : Dsl where
+def Lam.eval : Lam where
   Repr := id
   Obsv := id
 
@@ -40,5 +37,5 @@ def Dsl.eval : Dsl where
   val := id
   app f a := f a
 
-#eval Dsl.example Dsl.eval
+#eval Lam.example Lam.eval
 

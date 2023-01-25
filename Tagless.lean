@@ -1,4 +1,5 @@
-
+import Tagless.Tests
+import Tagless.Strong
 
 
 structure Dsl where

@@ -18,11 +18,11 @@ def Arith.run
 : A.O α :=
   A.observe r
 
-def Arith.test1 : {A : outParam <| Arith Nat} → A.R Nat
+def Arith.test1 : {A : Arith Nat} → A.R Nat
 | ⟨_, _, lit, add, mul, _⟩ =>
   mul (add (lit 1) (lit 2)) (add (lit 3) (lit 4))
 
-def Arith.test2 : {A : outParam <| Arith Nat} → A.R Nat
+def Arith.test2 : {A : Arith Nat} → A.R Nat
 | ⟨_, _, lit, add, mul, _⟩ =>
   let i := lit 1
   let n := lit 2
@@ -64,10 +64,14 @@ where
   
 
 #eval Arith.eval Arith.test1
+-- 21
 #eval Arith.toString Arith.test1
+-- "(1 + 2) * (3 + 4)"
 
 #eval Arith.eval Arith.test2
+-- 666
 #eval Arith.toString Arith.test2
+-- "2 * 3 * (1 + 10 + 100)"
 
 
 
@@ -144,4 +148,6 @@ protected def BArith.toString
     |> Arith.toString.parenIf (p > 0)
 
 #eval BArith.eval BArith.test1
+-- 666
 #eval BArith.toString BArith.test1
+-- "if false then (1 + 2) * (3 + 4) else 2 * 3 * (1 + 10 + 100)"
